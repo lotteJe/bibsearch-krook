@@ -1,0 +1,49 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <!-- <mat-icon>book</mat-icon>Zoeken in de catalogus    -->
+      <mat-icon>book</mat-icon> ZOEKEN IN DE CATALOGUS </ng-template>
+    <form novalidate class="content content-test-form" #form="ngForm" (ngSubmit)="form.valid && submitForm(form)">
+      <section class="row">
+        <div class="col">
+          <mat-input-container>
+            <input matInput matKeyboard placeholder="Zoekterm" name="zoekterm" [(ngModel)]="zoekValue" (enterClick)="submitForm(form)">
+          </mat-input-container>
+        </div>
+      </section>
+      <section class="row">
+        <button mat-raised-button type="submit" aria-label="Submit form">
+          ZOEKEN
+        </button>
+      </section>
+    </form>
+    <div>
+      <div *ngIf="resultaten">
+        <div class="row">
+          <div *ngFor="let resultaat of resultaten" class="col">
+            <mat-card class="card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{resultaat.titles.title}}</mat-card-title>
+                <mat-card-subtitle *ngIf="isUndefined(resultaat.authors) as value; else elseBlock">
+                </mat-card-subtitle>
+                <ng-template #elseBlock>
+                  {{ resultaat.authors['main-author']}}
+                </ng-template>
+              </mat-card-header>
+              <!--  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+              <mat-card-actions>
+                <a href="{{resultaat['detail-page']}}" target="_blank" mat-button>MEER INFO</a>
+                <!-- <button mat-button>SHARE</button> -->
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
