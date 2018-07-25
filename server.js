@@ -1,6 +1,6 @@
 //Install express server
 const express = require('express');
-var cors = require('cors')
+//var cors = require('cors')
 const path = require('path');
 
 const app = express();
@@ -14,7 +14,7 @@ app.get('/*', function (req, res) {
 });
 
 
-app.use(cors());
+//app.use(cors());
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
