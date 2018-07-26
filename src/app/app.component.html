@@ -18,28 +18,53 @@
       </section>
     </form>
     <div>
-      <div *ngIf="resultaten">
+      <div *ngIf="resultaten.length > 0 as value; else noResult">
         <div class="row">
           <div *ngFor="let resultaat of resultaten" class="col">
-            <mat-card class="card">
+            <mat-card class="example-card">
               <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{resultaat.titles.title}}</mat-card-title>
-                <mat-card-subtitle *ngIf="isUndefined(resultaat.authors) as value; else elseBlock">
+                <mat-card-title class="title">{{resultaat.titles.title.replace('amp;', '')}}</mat-card-title>
+                <mat-card-subtitle class="subtitle" *ngIf="isUndefined(resultaat.authors) as value; else elseBlock">
                 </mat-card-subtitle>
                 <ng-template #elseBlock>
-                  {{ resultaat.authors['main-author']}}
+                  <mat-card-subtitle>
+                    {{ resultaat.authors['main-author']}}
+                  </mat-card-subtitle>
                 </ng-template>
               </mat-card-header>
-              <!--  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+              <img mat-card-image src="assets/noresult.png" alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus imperdiet, lobortis diam ac, luctus neque. Pellentesque
+                  habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam massa tortor,
+                  interdum vitae nisi a, sagittis semper risus.
+                </p>
+              </mat-card-content>
               <mat-card-actions>
                 <a href="{{resultaat['detail-page']}}" target="_blank" mat-button>MEER INFO</a>
-                <!-- <button mat-button>SHARE</button> -->
               </mat-card-actions>
+              <div *ngIf="isArray(resultaat.types.type) as value; else elseBlockT">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let t of resultaat.types.type" selected="true" color="warn">{{t}}</mat-chip>
+                </mat-chip-list>
+              </div>
+              <ng-template #elseBlockT>
+                <div>
+                  <mat-chip-list>
+                    <mat-chip selected="true" color="warn"> {{resultaat.types.type}}
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+              </ng-template>
             </mat-card>
           </div>
         </div>
       </div>
+      <ng-template #noResult>
+        <div *ngIf="!first">
+          <img class="noresult" src="assets/noresultTextDown.png">
+        </div>
+      </ng-template>
     </div>
     <div>
       <div>

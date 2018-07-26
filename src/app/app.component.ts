@@ -2,7 +2,6 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-//import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { IKeyboardLayout, MAT_KEYBOARD_LAYOUTS, MatKeyboardComponent, MatKeyboardRef, MatKeyboardService } from '@ngx-material-keyboard/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -23,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private _keyboardRef: MatKeyboardRef<MatKeyboardComponent>;
   private _zoekterm: string;
 
+  public first = true;
   public resultaten = [];
 
   get zoekterm(): string {
@@ -86,9 +86,12 @@ export class AppComponent implements OnInit, OnDestroy {
           let jsonObj = parser.parse(response);
           if (jsonObj.aquabrowser.results !== undefined)
             this.resultaten = jsonObj.aquabrowser.results.result;
-          console.log(jsonObj);
+          else
+            this.resultaten.length = 0;
+          // console.log(jsonObj);
         });
     }
+    this.first = false;
   }
 
   isUndefined(authors) {
@@ -114,5 +117,9 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this._enterSubscription) {
       this._enterSubscription.unsubscribe();
     }
+  }
+
+  isArray(obj: any) {
+    return Array.isArray(obj)
   }
 }

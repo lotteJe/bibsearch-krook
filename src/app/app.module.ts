@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-
+import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -13,7 +13,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { MaterialModule } from './material/material.module';
-
 
 import { IKeyboardLayouts, keyboardLayouts, MAT_KEYBOARD_LAYOUTS, MatKeyboardModule } from '@ngx-material-keyboard/core';
 
@@ -56,7 +55,8 @@ const customLyouts: IKeyboardLayouts = {
     MatSelectModule,
     MatSlideToggleModule,
     MatTabsModule,
-    MatKeyboardModule
+    MatKeyboardModule,
+    MatChipsModule
   ],
   providers: [
     { provide: MAT_KEYBOARD_LAYOUTS, useValue: customLyouts },

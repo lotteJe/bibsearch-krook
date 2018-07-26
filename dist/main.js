@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-tab-group>\n  <mat-tab>\n    <ng-template mat-tab-label>\n      <!-- <mat-icon>book</mat-icon>Zoeken in de catalogus    -->\n      <mat-icon>book</mat-icon> ZOEKEN IN DE CATALOGUS </ng-template>\n    <form novalidate class=\"content content-test-form\" #form=\"ngForm\" (ngSubmit)=\"form.valid && submitForm(form)\">\n      <section class=\"row\">\n        <div class=\"col\">\n          <mat-input-container>\n            <input matInput matKeyboard placeholder=\"Zoekterm\" name=\"zoekterm\" [(ngModel)]=\"zoekValue\" (enterClick)=\"submitForm(form)\">\n          </mat-input-container>\n        </div>\n      </section>\n      <section class=\"row\">\n        <button mat-raised-button type=\"submit\" aria-label=\"Submit form\">\n          ZOEKEN\n        </button>\n      </section>\n    </form>\n    <div>\n      <div *ngIf=\"resultaten\">\n        <div class=\"row\">\n          <div *ngFor=\"let resultaat of resultaten\" class=\"col\">\n            <mat-card class=\"card\">\n              <mat-card-header>\n                <div mat-card-avatar class=\"example-header-image\"></div>\n                <mat-card-title>{{resultaat.titles.title}}</mat-card-title>\n                <mat-card-subtitle *ngIf=\"isUndefined(resultaat.authors) as value; else elseBlock\">\n                </mat-card-subtitle>\n                <ng-template #elseBlock>\n                  {{ resultaat.authors['main-author']}}\n                </ng-template>\n              </mat-card-header>\n              <!--  <img mat-card-image src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\" alt=\"Photo of a Shiba Inu\">-->\n              <mat-card-actions>\n                <a href=\"{{resultaat['detail-page']}}\" target=\"_blank\" mat-button>MEER INFO</a>\n                <!-- <button mat-button>SHARE</button> -->\n              </mat-card-actions>\n            </mat-card>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div>\n      <div>\n      </div>\n    </div>\n  </mat-tab>\n</mat-tab-group>"
+module.exports = "<mat-tab-group>\n  <mat-tab>\n    <ng-template mat-tab-label>\n      <!-- <mat-icon>book</mat-icon>Zoeken in de catalogus    -->\n      <mat-icon>book</mat-icon> ZOEKEN IN DE CATALOGUS </ng-template>\n    <form novalidate class=\"content content-test-form\" #form=\"ngForm\" (ngSubmit)=\"form.valid && submitForm(form)\">\n      <section class=\"row\">\n        <div class=\"col\">\n          <mat-input-container>\n            <input matInput matKeyboard placeholder=\"Zoekterm\" name=\"zoekterm\" [(ngModel)]=\"zoekValue\" (enterClick)=\"submitForm(form)\">\n          </mat-input-container>\n        </div>\n      </section>\n      <section class=\"row\">\n        <button mat-raised-button type=\"submit\" aria-label=\"Submit form\">\n          ZOEKEN\n        </button>\n      </section>\n    </form>\n    <div>\n      <div *ngIf=\"resultaten.length > 0 as value; else noResult\">\n        <div class=\"row\">\n          <div *ngFor=\"let resultaat of resultaten\" class=\"col\">\n            <mat-card class=\"example-card\">\n              <mat-card-header>\n                <mat-card-title class=\"title\">{{resultaat.titles.title.replace('amp;', '')}}</mat-card-title>\n                <mat-card-subtitle class=\"subtitle\" *ngIf=\"isUndefined(resultaat.authors) as value; else elseBlock\">\n                </mat-card-subtitle>\n                <ng-template #elseBlock>\n                  <mat-card-subtitle>\n                    {{ resultaat.authors['main-author']}}\n                  </mat-card-subtitle>\n                </ng-template>\n              </mat-card-header>\n              <img mat-card-image src=\"assets/noresult.png\" alt=\"Photo of a Shiba Inu\">\n              <mat-card-content>\n                <p>\n                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus imperdiet, lobortis diam ac, luctus neque. Pellentesque\n                  habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam massa tortor,\n                  interdum vitae nisi a, sagittis semper risus.\n                </p>\n              </mat-card-content>\n              <mat-card-actions>\n                <a href=\"{{resultaat['detail-page']}}\" target=\"_blank\" mat-button>MEER INFO</a>\n              </mat-card-actions>\n              <div *ngIf=\"isArray(resultaat.types.type) as value; else elseBlockT\">\n                <mat-chip-list>\n                  <mat-chip *ngFor=\"let t of resultaat.types.type\" selected=\"true\" color=\"warn\">{{t}}</mat-chip>\n                </mat-chip-list>\n              </div>\n              <ng-template #elseBlockT>\n                <div>\n                  <mat-chip-list>\n                    <mat-chip selected=\"true\" color=\"warn\"> {{resultaat.types.type}}\n                    </mat-chip>\n                  </mat-chip-list>\n                </div>\n              </ng-template>\n            </mat-card>\n          </div>\n        </div>\n      </div>\n      <ng-template #noResult>\n        <div *ngIf=\"!first\">\n          <img class=\"noresult\" src=\"assets/noresultTextDown.png\">\n        </div>\n      </ng-template>\n    </div>\n    <div>\n      <div>\n      </div>\n    </div>\n  </mat-tab>\n</mat-tab-group>"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<mat-tab-group>\n  <mat-tab>\n    <ng-template mat-tab-label>\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".content {\n  margin: 40px 32px; }\n\n.row {\n  align-items: flex-end;\n  display: -ms-grid;\n  display: grid;\n  grid-gap: 16px;\n  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\n  padding: 8px; }\n\n.content-test-form .row:last-of-type > .col:last-of-type {\n    align-self: flex-start;\n    padding-top: 8px; }\n\n.col {\n  position: relative; }\n\n.col > .mat-input-container {\n    display: block; }\n\n.mat-raised-button {\n  width: 100%; }\n\n.mat-select + .mat-raised-button {\n    margin-top: 24px; }\n\n.mat-select {\n  display: block; }\n\npre {\n  background-color: #e0e0e0;\n  border-radius: 3px;\n  display: block;\n  font: 11px/1.5 Monospaced, monospace;\n  margin: 8px 0;\n  min-height: 16px;\n  padding: 4px 8px;\n  white-space: normal; }\n\n.card {\n  max-width: 400px;\n  height: 150px; }\n\n.example-header-image {\n  background-image: url(\"data:image/png;base64,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\");\n  background-size: cover; }\n"
+module.exports = ".content {\n  margin: 40px 32px; }\n\n.row {\n  align-items: flex-end;\n  display: -ms-grid;\n  display: grid;\n  grid-gap: 16px;\n  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\n  padding: 8px; }\n\n.content-test-form .row:last-of-type > .col:last-of-type {\n    align-self: flex-start;\n    padding-top: 8px; }\n\n.col {\n  position: relative; }\n\n.col > .mat-input-container {\n    display: block; }\n\n.mat-raised-button {\n  width: 100%; }\n\n.mat-select + .mat-raised-button {\n    margin-top: 24px; }\n\n.mat-select {\n  display: block; }\n\npre {\n  background-color: #e0e0e0;\n  border-radius: 3px;\n  display: block;\n  font: 11px/1.5 Monospaced, monospace;\n  margin: 8px 0;\n  min-height: 16px;\n  padding: 4px 8px;\n  white-space: normal; }\n\n.card {\n  max-width: 400px; }\n\n.example-card {\n  max-width: 400px; }\n\n.noresult {\n  max-width: 70%;\n  display: block;\n  margin: auto; }\n"
 
 /***/ }),
 
@@ -71,7 +71,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 
-//import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 
 
@@ -82,6 +81,7 @@ var AppComponent = /** @class */ (function () {
         this.locale = locale;
         this._layouts = _layouts;
         this._http = _http;
+        this.first = true;
         this.resultaten = [];
         this.zoekValue = '';
     }
@@ -132,9 +132,12 @@ var AppComponent = /** @class */ (function () {
                 var jsonObj = parser.parse(response);
                 if (jsonObj.aquabrowser.results !== undefined)
                     _this.resultaten = jsonObj.aquabrowser.results.result;
-                console.log(jsonObj);
+                else
+                    _this.resultaten.length = 0;
+                // console.log(jsonObj);
             });
         }
+        this.first = false;
     };
     AppComponent.prototype.isUndefined = function (authors) {
         return (typeof authors === "undefined");
@@ -158,6 +161,9 @@ var AppComponent = /** @class */ (function () {
         if (this._enterSubscription) {
             this._enterSubscription.unsubscribe();
         }
+    };
+    AppComponent.prototype.isArray = function (obj) {
+        return Array.isArray(obj);
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -191,15 +197,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/esm5/animations.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/esm5/http.js");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
-/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./material/material.module */ "./src/app/material/material.module.ts");
-/* harmony import */ var _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-material-keyboard/core */ "./node_modules/@ngx-material-keyboard/core/esm5/ngx-material-keyboard-core.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm5/chips.es5.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./material/material.module */ "./src/app/material/material.module.ts");
+/* harmony import */ var _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ngx-material-keyboard/core */ "./node_modules/@ngx-material-keyboard/core/esm5/ngx-material-keyboard-core.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -229,7 +236,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var customLyouts = __assign({}, _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_12__["keyboardLayouts"], { 'Tolles Layout': {
+
+var customLyouts = __assign({}, _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__["keyboardLayouts"], { 'Tolles Layout': {
         'name': 'Awesome layout',
         'keys': [
             [
@@ -246,7 +254,7 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]
             ],
             imports: [
                 // Angular modules
@@ -256,21 +264,22 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
                 // Material modules
-                _material_material_module__WEBPACK_IMPORTED_MODULE_11__["MaterialModule"],
-                _angular_material_button__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"],
-                _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__["MatIconModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_7__["MatInputModule"],
-                _angular_material_select__WEBPACK_IMPORTED_MODULE_8__["MatSelectModule"],
-                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_9__["MatSlideToggleModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_10__["MatTabsModule"],
-                _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_12__["MatKeyboardModule"]
+                _material_material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"],
+                _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"],
+                _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
+                _angular_material_select__WEBPACK_IMPORTED_MODULE_9__["MatSelectModule"],
+                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_10__["MatSlideToggleModule"],
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_11__["MatTabsModule"],
+                _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__["MatKeyboardModule"],
+                _angular_material_chips__WEBPACK_IMPORTED_MODULE_5__["MatChipsModule"]
             ],
             providers: [
-                { provide: _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_12__["MAT_KEYBOARD_LAYOUTS"], useValue: customLyouts },
+                { provide: _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__["MAT_KEYBOARD_LAYOUTS"], useValue: customLyouts },
                 { provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], useValue: 'nl-BE' }
             ],
             bootstrap: [
-                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]
             ]
         })
     ], AppModule);
