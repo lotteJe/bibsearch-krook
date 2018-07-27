@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-tab-group>\n  <mat-tab>\n    <ng-template mat-tab-label>\n      <!-- <mat-icon>book</mat-icon>Zoeken in de catalogus    -->\n      <mat-icon>book</mat-icon> ZOEKEN IN DE CATALOGUS </ng-template>\n    <form novalidate class=\"content content-test-form\" #form=\"ngForm\" (ngSubmit)=\"form.valid && submitForm(form)\">\n      <section class=\"row\">\n        <div class=\"col\">\n          <mat-input-container>\n            <input matInput matKeyboard placeholder=\"Zoekterm\" name=\"zoekterm\" [(ngModel)]=\"zoekValue\" (enterClick)=\"submitForm(form)\">\n          </mat-input-container>\n        </div>\n      </section>\n      <section class=\"row\">\n        <button mat-raised-button type=\"submit\" aria-label=\"Submit form\">\n          ZOEKEN\n        </button>\n      </section>\n    </form>\n    <div>\n      <div *ngIf=\"resultaten.length > 0 as value; else noResult\">\n        <div class=\"row\">\n          <div *ngFor=\"let resultaat of resultaten\" class=\"col\">\n            <mat-card class=\"example-card\">\n              <mat-card-header>\n                <mat-card-title class=\"title\">{{resultaat.titles.title.replace('amp;', '')}}</mat-card-title>\n                <mat-card-subtitle class=\"subtitle\" *ngIf=\"isUndefined(resultaat.authors) as value; else elseBlock\">\n                </mat-card-subtitle>\n                <ng-template #elseBlock>\n                  <mat-card-subtitle>\n                    {{ resultaat.authors['main-author']}}\n                  </mat-card-subtitle>\n                </ng-template>\n              </mat-card-header>\n              <img mat-card-image src=\"assets/noresult.png\" alt=\"Photo of a Shiba Inu\">\n              <mat-card-content>\n                <p>\n                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus imperdiet, lobortis diam ac, luctus neque. Pellentesque\n                  habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam massa tortor,\n                  interdum vitae nisi a, sagittis semper risus.\n                </p>\n              </mat-card-content>\n              <mat-card-actions>\n                <a href=\"{{resultaat['detail-page']}}\" target=\"_blank\" mat-button>MEER INFO</a>\n              </mat-card-actions>\n              <div *ngIf=\"isArray(resultaat.types.type) as value; else elseBlockT\">\n                <mat-chip-list>\n                  <mat-chip *ngFor=\"let t of resultaat.types.type\" selected=\"true\" color=\"warn\">{{t}}</mat-chip>\n                </mat-chip-list>\n              </div>\n              <ng-template #elseBlockT>\n                <div>\n                  <mat-chip-list>\n                    <mat-chip selected=\"true\" color=\"warn\"> {{resultaat.types.type}}\n                    </mat-chip>\n                  </mat-chip-list>\n                </div>\n              </ng-template>\n            </mat-card>\n          </div>\n        </div>\n      </div>\n      <ng-template #noResult>\n        <div *ngIf=\"!first\">\n          <img class=\"noresult\" src=\"assets/noresultTextDown.png\">\n        </div>\n      </ng-template>\n    </div>\n    <div>\n      <div>\n      </div>\n    </div>\n  </mat-tab>\n</mat-tab-group>"
+module.exports = "<mat-tab-group>\n  <mat-tab>\n    <ng-template mat-tab-label>\n      <!-- <mat-icon>book</mat-icon>Zoeken in de catalogus    -->\n      <mat-icon>book</mat-icon> ZOEKEN IN DE CATALOGUS </ng-template>\n    <form novalidate class=\"content content-test-form\" #form=\"ngForm\" (ngSubmit)=\"form.valid && submitForm(form)\">\n      <section class=\"row\">\n        <div class=\"col\">\n          <mat-input-container>\n            <input matInput matKeyboard placeholder=\"Zoekterm\" name=\"zoekterm\" [(ngModel)]=\"zoekValue\" (enterClick)=\"submitForm(form)\">\n          </mat-input-container>\n        </div>\n      </section>\n      <section class=\"row\">\n        <button mat-raised-button type=\"submit\" aria-label=\"Submit form\">\n          ZOEKEN\n        </button>\n      </section>\n    </form>\n    <div>\n      <div *ngIf=\"resultaten.length > 0 as value; else noResult\">\n        <!-- <div class=\"row\">-->\n        <ngx-masonry [options]=\"{ transitionDuration: '1s' }\" [useImagesLoaded]=\"true\">\n          <ngxMasonryItem class=\"masonry-item\" *ngFor=\"let resultaat of resultaten\">\n            <!--  <div class=\"col\">-->\n            <mat-card class=\"card\">\n              <mat-card-header>\n                <mat-card-title class=\"title\">{{resultaat.titles.title.replace('amp;', '')}}</mat-card-title>\n                <mat-card-subtitle class=\"subtitle\" *ngIf=\"isUndefined(resultaat.authors) as value; else elseBlock\">\n                </mat-card-subtitle>\n                <ng-template #elseBlock>\n                  <mat-card-subtitle>\n                    {{ resultaat.authors['main-author']}}\n                  </mat-card-subtitle>\n                </ng-template>\n              </mat-card-header>\n\n              <img mat-card-image src=\"{{getUrl(resultaat.coverimages?.coverimage)}}\" alt=\"CoverImage\">\n              <mat-card-content>\n\n                {{resultaat.summaries?.summary}}\n              </mat-card-content>\n              <mat-card-actions>\n                <a href=\"{{resultaat['detail-page']}}\" target=\"_blank\" mat-button>MEER INFO</a>\n              </mat-card-actions>\n              <!-- <div *ngIf=\"isArray(resultaat.types.type) as value; else elseBlockType\">\n                <mat-chip-list>\n                  <mat-chip *ngFor=\"let t of resultaat.types.type\" selected=\"true\" color=\"warn\">{{t}}</mat-chip>\n                </mat-chip-list>\n              </div>\n              <ng-template #elseBlockType>\n                <div>\n                  <mat-chip-list>\n                    <mat-chip selected=\"true\" color=\"warn\"> {{resultaat.types.type}}\n                    </mat-chip>\n                  </mat-chip-list>\n                </div>\n              </ng-template>-->\n            </mat-card>\n            <!--  </div>-->\n          </ngxMasonryItem>\n        </ngx-masonry>\n        <!-- </div>-->\n      </div>\n      <ng-template #noResult>\n        <div *ngIf=\"!first\">\n          <img class=\"noresult\" src=\"assets/noresultTextDown.png\">\n        </div>\n      </ng-template>\n    </div>\n    <div>\n      <div>\n      </div>\n    </div>\n  </mat-tab>\n</mat-tab-group>"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<mat-tab-group>\n  <mat-tab>\n    <ng-template mat-tab-label>\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".content {\n  margin: 40px 32px; }\n\n.row {\n  align-items: flex-end;\n  display: -ms-grid;\n  display: grid;\n  grid-gap: 16px;\n  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\n  padding: 8px; }\n\n.content-test-form .row:last-of-type > .col:last-of-type {\n    align-self: flex-start;\n    padding-top: 8px; }\n\n.col {\n  position: relative; }\n\n.col > .mat-input-container {\n    display: block; }\n\n.mat-raised-button {\n  width: 100%; }\n\n.mat-select + .mat-raised-button {\n    margin-top: 24px; }\n\n.mat-select {\n  display: block; }\n\npre {\n  background-color: #e0e0e0;\n  border-radius: 3px;\n  display: block;\n  font: 11px/1.5 Monospaced, monospace;\n  margin: 8px 0;\n  min-height: 16px;\n  padding: 4px 8px;\n  white-space: normal; }\n\n.card {\n  max-width: 400px; }\n\n.example-card {\n  max-width: 400px; }\n\n.noresult {\n  max-width: 70%;\n  display: block;\n  margin: auto; }\n"
+module.exports = ".content {\n  margin: 40px 32px; }\n\n.row {\n  align-items: center;\n  display: -ms-grid;\n  display: grid;\n  grid-gap: 16px;\n  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n  padding: 8px; }\n\n.content-test-form .row:last-of-type > .col:last-of-type {\n    align-self: flex-start;\n    padding-top: 8px; }\n\n.col {\n  position: relative; }\n\n.col > .mat-input-container {\n    display: block; }\n\n.mat-raised-button {\n  width: 100%; }\n\n.mat-select + .mat-raised-button {\n    margin-top: 24px; }\n\n.mat-select {\n  display: block; }\n\npre {\n  background-color: #e0e0e0;\n  border-radius: 3px;\n  display: block;\n  font: 11px/1.5 Monospaced, monospace;\n  margin: 8px 0;\n  min-height: 16px;\n  padding: 4px 8px;\n  white-space: normal; }\n\n.card {\n  max-width: 180px; }\n\n.noresult {\n  max-width: 70%;\n  display: block;\n  margin: auto; }\n\n.masonry-item {\n  margin: 0 10px 10px 10px;\n  background-color: #f1f1f1;\n  background-size: cover;\n  width: 180px; }\n\nmat-card-content {\n  font-size: 12px; }\n"
 
 /***/ }),
 
@@ -58,6 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngx-material-keyboard/core */ "./node_modules/@ngx-material-keyboard/core/esm5/ngx-material-keyboard-core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -70,6 +71,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+
 
 
 
@@ -118,8 +120,8 @@ var AppComponent = /** @class */ (function () {
         var temp = form.controls["zoekterm"].value;
         this._zoekterm = temp.replace(/\s/g, "%20");
         if (typeof this._zoekterm !== "undefined") {
-            var url = 'https://cataloguswebservices.bibliotheek.be/wetteren/search/?q=' + this._zoekterm + '&authorization=b8157a8a17c57162b1c9d8096c5f3620';
-            console.log(url);
+            // + '&authorization=' + environment.apikey
+            var url = 'http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apikey;
             this._http.get(url, {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]()
                     .set('Content-Type', 'text/xml')
@@ -134,7 +136,7 @@ var AppComponent = /** @class */ (function () {
                     _this.resultaten = jsonObj.aquabrowser.results.result;
                 else
                     _this.resultaten.length = 0;
-                // console.log(jsonObj);
+                console.log(jsonObj);
             });
         }
         this.first = false;
@@ -164,6 +166,14 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.isArray = function (obj) {
         return Array.isArray(obj);
+    };
+    AppComponent.prototype.getUrl = function (url) {
+        if (url) {
+            var temp = url.replace(/&amp;/g, "&").replace('small', 'large');
+            return temp;
+        }
+        else
+            return ("assets/noimage.png");
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -207,6 +217,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./material/material.module */ "./src/app/material/material.module.ts");
 /* harmony import */ var _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ngx-material-keyboard/core */ "./node_modules/@ngx-material-keyboard/core/esm5/ngx-material-keyboard-core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var ngx_masonry__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-masonry */ "./node_modules/ngx-masonry/fesm5/ngx-masonry.js");
 var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -221,6 +232,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -272,7 +284,9 @@ var AppModule = /** @class */ (function () {
                 _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_10__["MatSlideToggleModule"],
                 _angular_material_tabs__WEBPACK_IMPORTED_MODULE_11__["MatTabsModule"],
                 _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__["MatKeyboardModule"],
-                _angular_material_chips__WEBPACK_IMPORTED_MODULE_5__["MatChipsModule"]
+                _angular_material_chips__WEBPACK_IMPORTED_MODULE_5__["MatChipsModule"],
+                //Masonary
+                ngx_masonry__WEBPACK_IMPORTED_MODULE_15__["NgxMasonryModule"]
             ],
             providers: [
                 { provide: _ngx_material_keyboard_core__WEBPACK_IMPORTED_MODULE_13__["MAT_KEYBOARD_LAYOUTS"], useValue: customLyouts },
@@ -353,7 +367,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
-    production: false
+    production: false,
+    apikey: "42c13ce01ef0e9783c271e940f5487ac"
 };
 
 
