@@ -20,6 +20,8 @@ import { AppComponent } from './app.component';
 
 import {LOCALE_ID} from '@angular/core';
 
+import { NgxMasonryModule } from 'ngx-masonry';
+
 const customLyouts: IKeyboardLayouts = {
   ...keyboardLayouts,
   'Tolles Layout': {
@@ -56,7 +58,11 @@ const customLyouts: IKeyboardLayouts = {
     MatSlideToggleModule,
     MatTabsModule,
     MatKeyboardModule,
-    MatChipsModule
+    MatChipsModule,
+
+    //Masonary
+    NgxMasonryModule
+    
   ],
   providers: [
     { provide: MAT_KEYBOARD_LAYOUTS, useValue: customLyouts },

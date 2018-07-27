@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../environments/environment';
+
 
 declare var require: any;
 var parser = require('fast-xml-parser');
@@ -70,10 +72,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this._zoekterm = temp.replace(/\s/g, "%20");
 
     if (typeof this._zoekterm !== "undefined") {
-      const url = 'https://cataloguswebservices.bibliotheek.be/wetteren/search/?q=' + this._zoekterm + '&authorization=b8157a8a17c57162b1c9d8096c5f3620';
-
-      console.log(url);
-
+      // + '&authorization=' + environment.apikey
+      const url = 'http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + environment.apikey;
       this._http.get(url, {
         headers: new HttpHeaders()
           .set('Content-Type', 'text/xml')
@@ -88,7 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.resultaten = jsonObj.aquabrowser.results.result;
           else
             this.resultaten.length = 0;
-          // console.log(jsonObj);
+          console.log(jsonObj);
         });
     }
     this.first = false;
@@ -121,5 +121,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isArray(obj: any) {
     return Array.isArray(obj)
+  }
+
+  getUrl(url: string) {
+    if (url) {
+      const temp = url.replace(/&amp;/g, "&").replace('small', 'large');
+      return temp;
+    }
+    else
+      return ("assets/noimage.png");
   }
 }

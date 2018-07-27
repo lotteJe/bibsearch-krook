@@ -19,9 +19,11 @@
     </form>
     <div>
       <div *ngIf="resultaten.length > 0 as value; else noResult">
-        <div class="row">
-          <div *ngFor="let resultaat of resultaten" class="col">
-            <mat-card class="example-card">
+        <!-- <div class="row">-->
+        <ngx-masonry [options]="{ transitionDuration: '1s' }" [useImagesLoaded]="true">
+          <ngxMasonryItem class="masonry-item" *ngFor="let resultaat of resultaten">
+            <!--  <div class="col">-->
+            <mat-card class="card">
               <mat-card-header>
                 <mat-card-title class="title">{{resultaat.titles.title.replace('amp;', '')}}</mat-card-title>
                 <mat-card-subtitle class="subtitle" *ngIf="isUndefined(resultaat.authors) as value; else elseBlock">
@@ -32,33 +34,33 @@
                   </mat-card-subtitle>
                 </ng-template>
               </mat-card-header>
-              <img mat-card-image src="assets/noresult.png" alt="Photo of a Shiba Inu">
+
+              <img mat-card-image src="{{getUrl(resultaat.coverimages?.coverimage)}}" alt="CoverImage">
               <mat-card-content>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus imperdiet, lobortis diam ac, luctus neque. Pellentesque
-                  habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam massa tortor,
-                  interdum vitae nisi a, sagittis semper risus.
-                </p>
+
+                {{resultaat.summaries?.summary}}
               </mat-card-content>
               <mat-card-actions>
                 <a href="{{resultaat['detail-page']}}" target="_blank" mat-button>MEER INFO</a>
               </mat-card-actions>
-              <div *ngIf="isArray(resultaat.types.type) as value; else elseBlockT">
+              <!-- <div *ngIf="isArray(resultaat.types.type) as value; else elseBlockType">
                 <mat-chip-list>
                   <mat-chip *ngFor="let t of resultaat.types.type" selected="true" color="warn">{{t}}</mat-chip>
                 </mat-chip-list>
               </div>
-              <ng-template #elseBlockT>
+              <ng-template #elseBlockType>
                 <div>
                   <mat-chip-list>
                     <mat-chip selected="true" color="warn"> {{resultaat.types.type}}
                     </mat-chip>
                   </mat-chip-list>
                 </div>
-              </ng-template>
+              </ng-template>-->
             </mat-card>
-          </div>
-        </div>
+            <!--  </div>-->
+          </ngxMasonryItem>
+        </ngx-masonry>
+        <!-- </div>-->
       </div>
       <ng-template #noResult>
         <div *ngIf="!first">
