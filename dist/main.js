@@ -124,10 +124,11 @@ var AppComponent = /** @class */ (function () {
             this._http.get(url, {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]()
                     .set('Content-Type', 'text/xml')
-                    .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
                     .append('Access-Control-Allow-Origin', '*')
-                    .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"),
-                withCredentials: true, responseType: 'text'
+                    .append('Access-Control-Allow-Credentials', 'true')
+                    .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+                    .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Methods"),
+                responseType: 'text'
             })
                 .subscribe(function (response) {
                 var jsonObj = parser.parse(response);
