@@ -72,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._zoekterm = temp.replace(/\s/g, "%20");
 
     if (typeof this._zoekterm !== "undefined") {
-      const url = 'http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + environment.apikey;
+      const url = 'https://cors-anywhere.herokuapp.com/http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + environment.apikey;
       this._http.get(url, {
         headers: new HttpHeaders()
           .set('Content-Type', 'text/xml')
