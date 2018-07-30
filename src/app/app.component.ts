@@ -76,9 +76,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this._http.get(url, {
         headers: new HttpHeaders()
           .set('Content-Type', 'text/xml')
-          //.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
-          //.append('Access-Control-Allow-Origin', '*')
-          //.append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
+          .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+          .append('Access-Control-Allow-Origin', '*')
+          .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
         , responseType: 'text'
       })
         .subscribe(response => {
