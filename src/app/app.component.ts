@@ -72,13 +72,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (typeof this._zoekterm !== "undefined") {
       const url = 'http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + environment.apikey;
+
       this._http.get(url, {
         headers: new HttpHeaders()
           .set('Content-Type', 'text/xml')
-          .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
           .append('Access-Control-Allow-Origin', '*')
-          .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
-        , withCredentials: true, responseType: 'text'
+          .append('Access-Control-Allow-Credentials', 'true')
+          .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+          .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Methods")
+        , responseType: 'text'
       })
         .subscribe(response => {
           let jsonObj = parser.parse(response);
