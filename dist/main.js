@@ -120,7 +120,7 @@ var AppComponent = /** @class */ (function () {
         var temp = form.controls["zoekterm"].value;
         this._zoekterm = temp.replace(/\s/g, "%20");
         if (typeof this._zoekterm !== "undefined") {
-            var url = 'https://cors-anywhere.herokuapp.com/http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apikey;
+            var url = 'http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apikey;
             this._http.get(url, {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]()
                     .set('Content-Type', 'text/xml')
