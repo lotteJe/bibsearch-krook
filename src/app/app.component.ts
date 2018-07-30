@@ -9,7 +9,6 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../environments/environment';
 
-
 declare var require: any;
 var parser = require('fast-xml-parser');
 
@@ -79,7 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
           .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
           .append('Access-Control-Allow-Origin', '*')
           .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
-        , responseType: 'text'
+        , withCredentials: true, responseType: 'text'
       })
         .subscribe(response => {
           let jsonObj = parser.parse(response);

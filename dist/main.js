@@ -127,7 +127,7 @@ var AppComponent = /** @class */ (function () {
                     .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
                     .append('Access-Control-Allow-Origin', '*')
                     .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"),
-                responseType: 'text'
+                withCredentials: true, responseType: 'text'
             })
                 .subscribe(function (response) {
                 var jsonObj = parser.parse(response);
