@@ -72,14 +72,13 @@ export class AppComponent implements OnInit, OnDestroy {
     this._zoekterm = temp.replace(/\s/g, "%20");
 
     if (typeof this._zoekterm !== "undefined") {
-      // + '&authorization=' + environment.apikey
       const url = 'http://gent.staging.aquabrowser.be/api/v1/search/?q=' + this._zoekterm + '&authorization=' + environment.apikey;
       this._http.get(url, {
         headers: new HttpHeaders()
           .set('Content-Type', 'text/xml')
-          .append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
-          .append('Access-Control-Allow-Origin', '*')
-          .append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
+          //.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+          //.append('Access-Control-Allow-Origin', '*')
+          //.append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
         , responseType: 'text'
       })
         .subscribe(response => {
